@@ -90,6 +90,48 @@ namespace tinySTL {
 		return result;
 	}
 
+	char * Alloc::chunk_alloc(size_t bytes, int& nobjs) {
+		size_t total_bytes = bytes * nobjs;
+		size_t bytes_left = end_free - start_free;
+		char * result;
+		if (bytes_left >= total_bytes) {
+			result = start_free;
+			start_free += total_bytes;
+			return result;
+		}
+		else if (bytes_left >= bytes) {
+			nobjs = bytes_left / bytes;
+			result = start_free;
+			start_free += nobjs * bytes;
+			return result;
+		}
+		else {
+			if (bytes_left > 0) {
+				obj ** my_free_list = free_list + freeListIndex(bytes_left);
+				((obj *)start_free)->free_list_link = *my_free_list;
+				*my_free_list = (obj*)start_free;
+			}
+			size_t bytes_to_get = 2 * total_bytes + roundUp(heap_size >> 4);//这里为什么要加一个额外的增量呢？
+			start_free = (char *)malloc(bytes_to_get);
+			obj ** my_free_list;
+			if (start_free == nullptr) {
+				for (int i = bytes; i < __MAX_BYTES; i += __ALIGN) {
+					my_free_list = free_list + freeListIndex(i);
+					if (*my_free_list != 0) {
+						start_free = (char*)my_free_list;
+						*my_free_list = (*my_free_list)->free_list_link;
+						end_free = start_free + i;
+						return chunk_alloc(bytes, nobjs);
+					}
+				}
+				end_free = 0;
+				throw std::bad_alloc(); //TODO: 这里有待商榷啊，我不知道这么写对不对
+			}
+			heap_size += bytes_to_get;
+			end_free = start_free + bytes_to_get;
+			return(chunk_alloc(bytes, nobjs));
+		}
+	}
 
 }
 
