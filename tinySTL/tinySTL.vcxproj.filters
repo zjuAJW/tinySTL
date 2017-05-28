@@ -24,10 +24,19 @@
     <ClInclude Include="targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="alloc.h">
+    <ClInclude Include="type_traits.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="type_traits.h">
+    <ClInclude Include="Construct.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Alloc.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Uninitialized.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Iterator.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

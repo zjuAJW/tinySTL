@@ -1,3 +1,4 @@
+#pragma once  
 #ifndef ALLOC_H
 #define ALLOC_H
 
@@ -42,7 +43,7 @@ namespace tinySTL {
 	char * Alloc::start_free = 0;
 	char * Alloc::end_free = 0;
 	size_t Alloc::heap_size = 0;
-	Alloc::obj* Alloc::free_list[__NFREELISTS] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+	Alloc::obj* Alloc::free_list[__NFREELISTS] = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
 
 	void * Alloc::allocate(size_t n) {
 		if (n > __MAX_BYTES)
@@ -55,7 +56,7 @@ namespace tinySTL {
 			void * r = refill(roundUp(n));
 			return r;
 		}
-		*my_free_list = result -> free_list_link;
+		*my_free_list = result->free_list_link;
 		return result;
 	}
 
@@ -70,7 +71,7 @@ namespace tinySTL {
 		*my_free_list = q;
 	}
 
-	
+
 	void * Alloc::refill(size_t n) {
 		int nobjs = __NOBJS;
 		char * chunk = chunk_alloc(n, nobjs);
@@ -134,10 +135,5 @@ namespace tinySTL {
 	}
 
 }
-
-
-
-
-
 
 #endif
