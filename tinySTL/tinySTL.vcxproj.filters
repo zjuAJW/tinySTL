@@ -24,19 +24,25 @@
     <ClInclude Include="targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="type_traits.h">
+    <ClInclude Include="tiny_alloc.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Construct.h">
+    <ClInclude Include="tiny_allocator.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Alloc.h">
+    <ClInclude Include="tiny_construct.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Uninitialized.h">
+    <ClInclude Include="tiny_iterator.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Iterator.h">
+    <ClInclude Include="tiny_uninitialized.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tiny_vector.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tiny_type_traits.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

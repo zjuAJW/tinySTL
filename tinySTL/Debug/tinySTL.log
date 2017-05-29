@@ -1,3 +1,42 @@
 ﻿  tinySTL.cpp
-  tinySTL.vcxproj -> F:\C++\tinySTL\Debug\tinySTL.exe
-  tinySTL.vcxproj -> F:\C++\tinySTL\Debug\tinySTL.pdb (Partial PDB)
+d:\vs2017\vs2017\vc\tools\msvc\14.10.25017\include\xutility(2350): warning C4996: 'std::copy::_Unchecked_iterators::_Deprecate': Call to 'std::copy' with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+  d:\vs2017\vs2017\vc\tools\msvc\14.10.25017\include\xutility(2350): note: 参见“std::copy::_Unchecked_iterators::_Deprecate”的声明
+  e:\c++\tinystl\tinystl\tiny_vector.h(121): note: 参见对正在编译的函数 模板 实例化“_OutIt *std::copy<int*,int*>(_InIt,_InIt,_OutIt)”的引用
+          with
+          [
+              _OutIt=int *,
+              _InIt=int *
+          ]
+  e:\c++\tinystl\tinystl\tiny_vector.h(119): note: 编译 类 模板 成员函数 "int *tinySTL::vector<int,tinySTL::Alloc>::erase(int *)" 时
+  e:\c++\tinystl\tinystl\tinystl.cpp(24): note: 参见对正在编译的函数 模板 实例化“int *tinySTL::vector<int,tinySTL::Alloc>::erase(int *)”的引用
+  e:\c++\tinystl\tinystl\tinystl.cpp(10): note: 参见对正在编译的 类 模板 实例化 "tinySTL::vector<int,tinySTL::Alloc>" 的引用
+d:\vs2017\vs2017\vc\tools\msvc\14.10.25017\include\xutility(2518): warning C4996: 'std::copy_backward::_Unchecked_iterators::_Deprecate': Call to 'std::copy_backward' with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+  d:\vs2017\vs2017\vc\tools\msvc\14.10.25017\include\xutility(2518): note: 参见“std::copy_backward::_Unchecked_iterators::_Deprecate”的声明
+  e:\c++\tinystl\tinystl\tiny_vector.h(66): note: 参见对正在编译的函数 模板 实例化“_BidIt2 *std::copy_backward<int*,int*>(_BidIt1,_BidIt1,_BidIt2)”的引用
+          with
+          [
+              _BidIt2=int *,
+              _BidIt1=int *
+          ]
+  e:\c++\tinystl\tinystl\tiny_vector.h(62): note: 编译 类 模板 成员函数 "void tinySTL::vector<int,tinySTL::Alloc>::insert_aux(int *,const T &)" 时
+          with
+          [
+              T=int
+          ]
+  e:\c++\tinystl\tinystl\tiny_vector.h(101): note: 参见对正在编译的函数 模板 实例化“void tinySTL::vector<int,tinySTL::Alloc>::insert_aux(int *,const T &)”的引用
+          with
+          [
+              T=int
+          ]
+  e:\c++\tinystl\tinystl\tiny_vector.h(95): note: 编译 类 模板 成员函数 "void tinySTL::vector<int,tinySTL::Alloc>::push_back(const T &)" 时
+          with
+          [
+              T=int
+          ]
+  e:\c++\tinystl\tinystl\tinystl.cpp(11): note: 参见对正在编译的函数 模板 实例化“void tinySTL::vector<int,tinySTL::Alloc>::push_back(const T &)”的引用
+          with
+          [
+              T=int
+          ]
+  tinySTL.vcxproj -> E:\C++\tinySTL\Debug\tinySTL.exe
+  tinySTL.vcxproj -> E:\C++\tinySTL\Debug\tinySTL.pdb (Partial PDB)

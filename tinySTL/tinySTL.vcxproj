@@ -138,13 +138,15 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Alloc.h" />
-    <ClInclude Include="Construct.h" />
-    <ClInclude Include="Iterator.h" />
+    <ClInclude Include="tiny_alloc.h" />
+    <ClInclude Include="tiny_allocator.h" />
+    <ClInclude Include="tiny_construct.h" />
+    <ClInclude Include="tiny_iterator.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="type_traits.h" />
-    <ClInclude Include="Uninitialized.h" />
+    <ClInclude Include="tiny_type_traits.h" />
+    <ClInclude Include="tiny_uninitialized.h" />
+    <ClInclude Include="tiny_vector.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
