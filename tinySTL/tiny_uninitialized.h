@@ -1,5 +1,5 @@
-#ifndef UNINITIALIZED_H_
-#define UNINITIALIZED_H_
+#ifndef TINY_UNINITIALIZED_H_
+#define TINY_UNINITIALIZED_H_
 
 #include "tiny_type_traits.h"
 #include "tiny_construct.h"

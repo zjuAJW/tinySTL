@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef ALLOCATOR_H_
-#define ALLOCATOR_H_
+#ifndef TINY_ALLOCATOR_H_
+#define TINY_ALLOCATOR_H_
 
 #include "tiny_alloc.h"
 

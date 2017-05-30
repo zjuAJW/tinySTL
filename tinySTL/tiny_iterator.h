@@ -1,5 +1,5 @@
-#ifndef ITERATOR_H_
-#define ITERATOR_H_
+#ifndef TINY_ITERATOR_H_
+#define TINY_ITERATOR_H_
 
 #include <cstddef>
 namespace tinySTL {

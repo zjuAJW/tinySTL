@@ -1,5 +1,5 @@
-#ifndef TYPE_TRAITS_H
-#define TYPE_TRAITS_H
+#ifndef TINY_TYPE_TRAITS_H
+#define TINY_TYPE_TRAITS_H
 
 namespace tinySTL {
 	struct __true_type {

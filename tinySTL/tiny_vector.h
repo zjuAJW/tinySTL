@@ -1,5 +1,5 @@
-#ifndef VECTOR_H_
-#define VECTOR_H_
+#ifndef TINY_VECTOR_H_
+#define TINY_VECTOR_H_
 
 #include "tiny_allocator.h"
 #include "tiny_uninitialized.h"
@@ -40,6 +40,14 @@ namespace tinySTL {
 		void insert_aux(iterator position, const T& x);
 
 	public:
+		vector() :start(0), finish(0), end_of_storage(0) {}
+		vector(size_type n, const T& value) {
+			fill_initialize(n, value);
+		}
+
+		vector(int n,const T& value){ fill_initialize(n, value); }
+		vector(long n, const T& value){ fill_initialize(n, value); }
+
 		iterator begin() const { return start; }
 		iterator end() const { return finish; }
 		size_type size() const { return (size_type)(end() - begin()); }
@@ -145,7 +153,25 @@ namespace tinySTL {
 				}
 			}
 			else {
-
+				size_type len = size() + max(size(), n);
+				iterator new_start = data_allocator::allocate(len);
+				iterator new_finish = new_start;
+				try {
+					uninitalized_copy(start, position, new_start);
+					new_finish += (position - start);
+					new_finish = uninitalized_fill_n(new_finish, n, value);
+					new_finish = uninitalized_copy(position, finish, new_finish);
+				}
+				catch (...) {
+					destory(new_start, new_finish);
+					data_allocator::deallocate(new_start, len);
+					throw;
+				}
+				destory(start, finish);
+				data_allocator::deallocate(start, capacity());
+				start = new_start;
+				finish = new_finish;
+				end_of_storage = start + len;
 			}
 		}
 	}

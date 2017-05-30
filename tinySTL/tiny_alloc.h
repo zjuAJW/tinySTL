@@ -1,6 +1,6 @@
 #pragma once  
-#ifndef ALLOC_H
-#define ALLOC_H
+#ifndef TINY_ALLOC_H
+#define TINY_ALLOC_H
 
 #include <new>
 

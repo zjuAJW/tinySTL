@@ -1,5 +1,5 @@
-#ifndef CONSTRUCT_H_
-#define CONSTRUCT_H_
+#ifndef TINY_CONSTRUCT_H_
+#define TINY_CONSTRUCT_H_
 
 #include <new.h>
 #include "tiny_type_traits.h"
