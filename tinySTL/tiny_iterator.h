@@ -68,6 +68,29 @@ namespace tinySTL {
 		return static_cast<typename iterator_traits<Iterator>::distance_type*>(0);
 	}
 
+	template<class Iterator>
+	typename iterator_traits<Iterator>::difference_type
+	distance(Iterator first, Iterator last) {
+		typedef typename iterator_traits<Iterator>::iterator_category iterator_category;
+			return __distance(first, last, iterator_category());
+	}
+	
+	template<class InputIterator>
+	typename iterator_traits<InputIterator>::difference_type
+	__distance(InputIterator first, InputIterator last, input_iterator_tag) {
+		typename iterator_traits<InputIterator>::difference_type result = 0;
+		while (first != last) {
+			++first;
+			++result;
+		}
+		return result;
+	}
+
+	template<class RandomAccessIterator>
+	typename iterator_traits<RandomAccessIterator>::difference_type
+	__distance(RandomAccessIterator first, RandomAccessIterator last, random_access_iterator_tag) {
+		return last - first;
+	}
 
 
 

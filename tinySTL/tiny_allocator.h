@@ -13,7 +13,7 @@ namespace tinySTL {
 		}
 
 		static T* allocate() {
-			return (T*)alloc::allocate(sizeof(T))
+			return (T*)alloc::allocate(sizeof(T));
 		}
 
 		static void deallocate(T* p, size_t n) {
