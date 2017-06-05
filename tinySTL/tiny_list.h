@@ -127,6 +127,7 @@ namespace tinySTL {
 		void splice(iterator position, list&, iterator first, iterator last);
 		void merge(list<T,alloc>& x);
 		void reverse();
+		void swap(list<T, alloc>& x);
 		void sort();
 		
 
@@ -265,7 +266,23 @@ namespace tinySTL {
 
 	template<class T, class alloc>
 	void list<T, alloc>::sort() {
-		
+		list<T, alloc> carry;
+		list<T, alloc> counter[64];
+		int fill = 0;
+		while (!empty()) {
+			carry.splice(carry.begin(), *this, begin());
+			int i = 0;
+			while (i < fill && !counter[i].empty()) {
+				counter[i].merge(carry);
+				carry.swap(counter[i++]);
+			}
+			carry.swap(counter[i]);
+			if (i == fill) ++fill;
+		}
+
+		for (int i = 1; i < fill; ++i)
+			counter[i].merge(counter[i-1]);
+		swap(counter[fill-1]);
 	}
 
 
