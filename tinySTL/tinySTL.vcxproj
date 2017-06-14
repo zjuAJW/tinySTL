@@ -139,6 +139,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="tiny_stack.h" />
+    <ClInclude Include="tiny_algobase.h" />
+    <ClInclude Include="tiny_algorithm.h" />
     <ClInclude Include="tiny_alloc.h" />
     <ClInclude Include="tiny_allocator.h" />
     <ClInclude Include="tiny_construct.h" />

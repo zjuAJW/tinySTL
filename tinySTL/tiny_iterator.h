@@ -48,10 +48,11 @@ namespace tinySTL {
 	};
 
 	template<class Iterator>
-	inline typename iterator_traits<Iterator>::iterator_caterogy
+	inline typename iterator_traits<Iterator>::iterator_category
 		iterator_category(const Iterator&) {
 		//TODO: 待定
-		return typename iterator_traits<Iterator>::iterator_category();
+		typedef typename iterator_traits<Iterator>::iterator_category iterator_category;
+		return iterator_category();
 	}
 
 	//注意返回值是指针
@@ -63,9 +64,9 @@ namespace tinySTL {
 
 	//注意返回值是指针
 	template<class Iterator>
-	inline typename iterator_traits<Iterator>::distance_type*
+	inline typename iterator_traits<Iterator>::difference_type*
 	distance_type(const Iterator&) {
-		return static_cast<typename iterator_traits<Iterator>::distance_type*>(0);
+		return static_cast<typename iterator_traits<Iterator>::difference_type*>(0);
 	}
 
 	template<class Iterator>
