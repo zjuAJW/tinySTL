@@ -5,7 +5,7 @@
 #include "tiny_uninitialized.h"
 #include "tiny_allocator.h"
 #include "tiny_construct.h"
-#include <algorithm>
+#include "tiny_algorithm.h"
 #include <math.h>
 
 namespace tinySTL {
@@ -64,6 +64,7 @@ namespace tinySTL {
 		typedef T value_type;
 		typedef value_type* pointer;
 		typedef T& reference;
+		typedef const T& const_reference;
 		typedef size_t size_type;
 		typedef deque_iterator<T> iterator;
 		typedef ptrdiff_t difference_type;
@@ -114,6 +115,8 @@ namespace tinySTL {
 		void clear();
 		iterator erase(iterator pos);
 		iterator erase(iterator first,iterator last);
+		iterator insert(iterator pos, const T& value);
+		iterator insert_aux(iterator pos, const T& value);
 		
 
 	};
@@ -271,15 +274,15 @@ namespace tinySTL {
 		if (map_size > 2 * new_nodes_num) {
 			new_start = map + (map_size - new_nodes_num) / 2 + (add_at_front ?nodes_to_add : 0); //这里注意运算符的优先级，后边的括号必须加上。。。
 			if (new_start < start.node)
-				std::copy(start.node, finish.node + 1, new_start);
+				tinySTL::copy(start.node, finish.node + 1, new_start);
 			else
-				std::copy_backward(start.node, finish.node + 1, new_start + old_nodes_num);
+				tinySTL::copy_backward(start.node, finish.node + 1, new_start + old_nodes_num);
 		}
 		else {
 			auto new_map_size = map_size + std::max(map_size, nodes_to_add) + 2;
 			auto new_map = map_allocator::allocate(new_map_size);
 			new_start = new_map + (new_map_size - new_nodes_num) / 2 + (add_at_front ? nodes_to_add : 0);
-			std::copy(start.node, finish.node + 1, new_start);
+			tinySTL::copy(start.node, finish.node + 1, new_start);
 			map_allocator::deallocate(map, map_size);
 			map = new_map;
 			map_size = new_map_size;
@@ -344,11 +347,11 @@ namespace tinySTL {
 		++next;
 		difference_type dis = pos - start;
 		if (dis < (size() >> 1)) {
-			std::copy_backward(start,pos,next);
+			tinySTL::copy_backward(start,pos,next);
 			pop_front();
 		}
 		else {
-			std::copy(next, finish, pos);
+			tinySTL::copy(next, finish, pos);
 			pop_back();
 		}
 		return start + dis; //这里注意，要返回指向pos元素后边的那个迭代器
@@ -363,7 +366,7 @@ namespace tinySTL {
 		difference_type n = last - first;
 		difference_type elems_before = first - start + 1;
 		if (elems_before < (size() - n) / 2) {
-			std::copy_backward(start, first, last);
+			tinySTL::copy_backward(start, first, last);
 			auto new_start = start + n;
 			destory(start,new_start);
 			for (auto node = start.node; node < new_start.node; ++node)
@@ -371,13 +374,50 @@ namespace tinySTL {
 			start = new_start;
 		}
 		else {
-			std::copy(last, finish, first);
+			tinySTL::copy(last, finish, first);
 			iterator new_finish = finish - n;
 			for (auto node = finish.node; node > new_finish; --node)
 				deallocate_node(*node);
 			finish = new_finish;
 		}
 		return start + elems_before;
+	}
+
+	template<class T, class alloc>
+	typename deque<T, alloc>::iterator deque<T, alloc>::insert(iterator pos, const T& value) {
+		if (pos == start) {
+			push_front(value);
+			return start;
+		}
+		else if (pos == finish) {
+			push_back(value);
+			auto tmp = finish;
+			return --tmp;
+		}
+		else {
+			insert_aux(pos, value);
+		}
+	}
+
+	template<class T, class alloc>
+	typename deque<T, alloc>::iterator deque<T, alloc>::insert_aux(iterator pos, const T& value) {
+		auto index = pos - start;
+		if (index < size() / 2) {
+			push_front(front());
+			auto front1 = start;
+			auto front2 = --front1;
+			--front2;
+			copy(front2, pos + 1, front1);
+		}
+		else {
+			push_back(back());
+			auto back1 = finish;
+			auto back2 = --back1;
+			--back2;
+			copy_backward(pos, back2, back1);
+		}
+		*pos = value;
+		return pos;
 	}
 }// end of namespace tinySTL
 

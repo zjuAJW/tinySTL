@@ -51,19 +51,21 @@ void listTest() {
 void dequeTest() {
 	tinySTL::deque<double> db;
 	expect_equal(db.empty(), 0);
-	tinySTL::deque<int> d(20,9);
+	tinySTL::deque<int> d(20,9);	//20个9
 	expect_equal(d[0],9);
 	expect_equal(d.size(), 20);
 
-	d.push_back(10);
+	d.push_back(10); 
 	d.push_back(11);
 	d.push_back(12);
 	d.push_back(13);
-	d.push_back(14);
+	d.push_back(14); 
+	//20个9，10，11，12，13，14
 	expect_equal(*(d.end() - 1), 14);
 	expect_equal(d.size(), 25);
 	d.push_front(8);
 	d.push_front(7);
+	//7，8，20个9，10，11，12，13，14
 	expect_equal(*d.begin(),7);
 	expect_equal(d.size(), 27);
 	d.pop_back();
@@ -71,24 +73,30 @@ void dequeTest() {
 	d.pop_back();
 	d.pop_back();
 	d.pop_back();
+	//7，8，20个9
 	expect_equal(*(d.end() - 1), 9);
 	expect_equal(d.size(), 22);
 	d.pop_front();
 	d.pop_front();
+	//20个9
 	expect_equal(*d.begin(), 9);
 	expect_equal(d.size(), 20);
 	d.clear();
+	//空
 	expect_equal(d.size(),0);
 	expect_equal((d.begin() == d.end()),true);
 
 	d.push_back(1);
 	d.push_back(2);
 	d.push_back(3);
+	//1，2，3
 	d.erase(d.begin());
+	//2，3
 	expect_equal(*d.begin(), 2);
 	expect_equal(d.size(), 2);
-
-
+	d.insert(d.begin() + 1, 10);
+	expect_equal(*(d.begin() + 1), 10);
+	expect_equal(d.size(), 3);
 }
 
 int main()
