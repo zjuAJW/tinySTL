@@ -138,6 +138,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="tiny_queue.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="tiny_stack.h" />
     <ClInclude Include="tiny_algobase.h" />

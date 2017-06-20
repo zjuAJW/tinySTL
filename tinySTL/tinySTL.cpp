@@ -102,7 +102,7 @@ void dequeTest() {
 int main()
 {
 	listTest();
-	dequeTest();
+	//dequeTest();
 
 	cout << test_pass << "/" << test << " : " << test / test_pass * 100.0 << "%";
 	return main_ret;
