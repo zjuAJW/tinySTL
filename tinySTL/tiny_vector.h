@@ -16,6 +16,7 @@ namespace tinySTL {
 		typedef value_type& reference;
 		typedef size_t		size_type;
 		typedef ptrdiff_t	difference_type;
+		typedef const value_type& const_reference;
 
 	protected:
 
@@ -36,6 +37,22 @@ namespace tinySTL {
 			finish = start + n;
 			end_of_storage = finish;
 		}
+		
+
+		template<class InputIterator>
+		iterator allocate_and_copy(size_type n, InputIterator first, InputIterator last) {
+			iterator result = data_allocator::allocate(n);
+			uninitalized_copy(first, last, result);
+			return result;
+		}
+
+		template<class InputIterator>
+		void copy_initialize(size_type n, InputIterator first, InputIterator last) {
+			start = allocate_and_copy(last - first, first, last);
+			finish = start + n;
+			end_of_storage = finish;
+		}
+
 
 		void insert_aux(iterator position, const T& x);
 
@@ -46,7 +63,12 @@ namespace tinySTL {
 		}
 
 		vector(int n,const T& value){ fill_initialize(n, value); }
+
 		vector(long n, const T& value){ fill_initialize(n, value); }
+		template<class InputIterator>
+		vector(InputIterator first, InputIterator last) {
+			copy_initialize(last - first, first, last);
+		}
 
 		iterator begin() const { return start; }
 		iterator end() const { return finish; }
@@ -55,8 +77,8 @@ namespace tinySTL {
 		bool empty() const { return begin() == end(); }
 
 		reference operator[](size_type n) { return *(begin() + n); }
-		reference front() { return *begin() };
-		reference back() { return *(end() - 1); }
+		reference front() const { return *begin(); }
+		reference back() const { return *(end() - 1); }
 
 		void push_back(const T& x);
 		void pop_back();

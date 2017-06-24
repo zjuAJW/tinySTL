@@ -6,6 +6,8 @@
 #include "tiny_list.h"
 #include "tiny_deque.h"
 #include <iostream>
+#include "tiny_heap.h"
+#include "tiny_queue.h"
 
 using std::cout;
 using std::endl;
@@ -23,7 +25,12 @@ int main_ret = 0;
             main_ret = 1;\
         }\
     } while(0)
-
+void vectorTest() {
+	int ia[10] = { 0,1,2,3,4,5,6,7,8,9 };
+	tinySTL::vector<int> ivec(ia,ia + 10);
+	expect_equal(ivec[0], 0);
+	expect_equal(ivec[9], 9);
+}
 void listTest() {
 	tinySTL::list<int> l;
 	l.push_back(5);
@@ -99,10 +106,55 @@ void dequeTest() {
 	expect_equal(d.size(), 3);
 }
 
+void heapTest() {
+	{
+		int ia[9] = { 0,1,2,3,4,8,9,3,5 };
+		tinySTL::vector<int> ivec(ia, ia + 9);
+		tinySTL::make_heap(ivec.begin(), ivec.end());
+		expect_equal(ivec[0], 9);
+		expect_equal(ivec[8], 1);
+
+		ivec.push_back(7);
+		tinySTL::push_heap(ivec.begin(), ivec.end());
+		expect_equal(ivec[1], 7);
+		expect_equal(ivec[9], 4);
+		tinySTL::pop_heap(ivec.begin(), ivec.end());
+		expect_equal(*(ivec.end() - 1), 9);
+		ivec.pop_back();
+		expect_equal(ivec[8], 1);
+		expect_equal(ivec[0], 8);
+		expect_equal(ivec[6], 2);
+		tinySTL::sort_heap(ivec.begin(), ivec.end());
+		expect_equal(ivec[0], 0);
+		expect_equal(ivec[2], 2);
+		expect_equal(ivec[8], 8);
+	}
+	{
+		int ia[9] = { 0,1,2,3,4,8,9,3,5 };
+		tinySTL::make_heap(ia, ia + 9);
+		tinySTL::sort_heap(ia, ia + 9);
+		expect_equal(ia[0], 0);
+		expect_equal(ia[2], 2);
+		expect_equal(ia[8], 9);
+	}
+}
+
+void queueTest() {
+	{
+		int ia[9] = { 0,1,2,3,4,8,9,3,5 };
+		tinySTL::priority_queue<int> ipq(ia, ia + 9);
+		expect_equal(ipq.top(),9);
+		ipq.pop();
+		expect_equal(ipq.top(),8);
+	}
+}
 int main()
-{
-	listTest();
+{	
+	//vectorTest();
+	//listTest();
 	//dequeTest();
+	//heapTest();
+	queueTest();
 
 	cout << test_pass << "/" << test << " : " << test / test_pass * 100.0 << "%";
 	return main_ret;

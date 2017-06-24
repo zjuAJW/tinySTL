@@ -63,6 +63,15 @@
     <ClInclude Include="tiny_stack.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="tiny_queue.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tiny_heap.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tiny_functional.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
