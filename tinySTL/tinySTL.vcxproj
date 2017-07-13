@@ -140,6 +140,7 @@
   <ItemGroup>
     <ClInclude Include="tiny_functional.h" />
     <ClInclude Include="tiny_heap.h" />
+    <ClInclude Include="tiny_pair.h" />
     <ClInclude Include="tiny_queue.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="tiny_stack.h" />
@@ -153,6 +154,7 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="tiny_list.h" />
+    <ClInclude Include="tiny_tree.h" />
     <ClInclude Include="tiny_type_traits.h" />
     <ClInclude Include="tiny_uninitialized.h" />
     <ClInclude Include="tiny_vector.h" />

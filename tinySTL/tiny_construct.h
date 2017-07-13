@@ -36,8 +36,6 @@ namespace tinySTL {
 			destory(&*first);
 		}
 	}
-
-	
 }
 
 

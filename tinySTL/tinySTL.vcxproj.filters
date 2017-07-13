@@ -72,6 +72,12 @@
     <ClInclude Include="tiny_functional.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="tiny_tree.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tiny_pair.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

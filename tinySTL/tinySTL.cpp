@@ -154,9 +154,13 @@ int main()
 	//listTest();
 	//dequeTest();
 	//heapTest();
-	queueTest();
+	//queueTest();
 
-	cout << test_pass << "/" << test << " : " << test / test_pass * 100.0 << "%";
-	return main_ret;
+	int x, y;
+	x = 1;
+	y = x, x = 1;
+	cout << y << endl << x << endl;
+	//cout << test_pass << "/" << test << " : " << test / test_pass * 100.0 << "%";
+	//return main_ret;
 }
 
